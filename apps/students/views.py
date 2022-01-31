@@ -53,7 +53,7 @@ class AssignmentsView(generics.ListCreateAPIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        serializer = AssignmentSerializer(assignment, data=request.data)
+        serializer = AssignmentSerializer(assignment, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()

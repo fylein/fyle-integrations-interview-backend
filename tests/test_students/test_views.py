@@ -60,7 +60,7 @@ def test_post_assignment_student_1(api_client, student_1):
 
 
 @pytest.mark.django_db()
-def test_submit_assignment_student_1(api_client, student_1):
+def test_submit_assignment_without_teacher_student_1(api_client, student_1):
     response = api_client.patch(
         reverse('students-assignments'),
         data=json.dumps({
@@ -76,6 +76,9 @@ def test_submit_assignment_student_1(api_client, student_1):
 
     assert error['non_field_errors'] == ['Teacher ID has to be sent to set state to SUBMITTED']
 
+
+@pytest.mark.django_db()
+def test_submit_assignment_student_1(api_client, student_1):
     response = api_client.patch(
         reverse('students-assignments'),
         data=json.dumps({

@@ -2,9 +2,9 @@ from attr import attr
 from rest_framework import serializers
 from .models import Assignment
 
-class AssignmentSerializer(serializers.ModelSerializer):
+class StudentAssignmentSerializer(serializers.ModelSerializer):
     """
-    Assignment serializer
+    Student Assignment serializer
     """
     class Meta:
         model = Assignment

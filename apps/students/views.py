@@ -4,10 +4,10 @@ from rest_framework.response import Response
 from apps.teachers.models import Teacher
 
 from .models import Assignment, Student
-from .serializers import AssignmentSerializer
+from .serializers import StudentAssignmentSerializer
 
 class AssignmentsView(generics.ListCreateAPIView):
-    serializer_class = AssignmentSerializer
+    serializer_class = StudentAssignmentSerializer
 
     def get(self, request, *args, **kwargs):
         assignments = Assignment.objects.filter(student__user=request.user)
@@ -21,7 +21,7 @@ class AssignmentsView(generics.ListCreateAPIView):
         student = Student.objects.get(user=request.user)
         request.data['student'] = student.id
 
-        serializer = AssignmentSerializer(data=request.data)
+        serializer = self.serializer_class(data=request.data)
 
         if serializer.is_valid():
             serializer.save()
@@ -53,7 +53,7 @@ class AssignmentsView(generics.ListCreateAPIView):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        serializer = AssignmentSerializer(assignment, data=request.data, partial=True)
+        serializer = self.serializer_class(assignment, data=request.data, partial=True)
 
         if serializer.is_valid():
             serializer.save()

@@ -6,6 +6,7 @@ from apps.teachers.models import Teacher
 from .models import Assignment, Student
 from .serializers import StudentAssignmentSerializer
 
+
 class AssignmentsView(generics.ListCreateAPIView):
     serializer_class = StudentAssignmentSerializer
 
@@ -35,7 +36,6 @@ class AssignmentsView(generics.ListCreateAPIView):
             data=serializer.errors,
             status=status.HTTP_400_BAD_REQUEST
         )
-
 
     def patch(self, request, *args, **kwargs):
         student = Student.objects.get(user=request.user)

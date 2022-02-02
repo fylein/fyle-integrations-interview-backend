@@ -3,6 +3,7 @@ import json
 from django.urls import reverse
 import pytest
 
+
 @pytest.mark.django_db()
 def test_get_assignments_student_1(api_client, student_1):
     response = api_client.get(

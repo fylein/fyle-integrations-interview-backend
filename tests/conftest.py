@@ -10,6 +10,7 @@ from sqlite3 import Error
 from django.conf import settings
 from fyle_classroom.settings import BASE_DIR
 
+
 def create_connection():
     """ create a database connection to a SQLite database """
     conn = None
@@ -27,6 +28,7 @@ def create_connection():
 def api_client():
     return APIClient()
 
+
 @pytest.fixture
 def django_db_setup():
     create_connection()
@@ -35,6 +37,7 @@ def django_db_setup():
         'NAME': BASE_DIR / 'test_db.sqlite3',
     }
     os.system('python manage.py migrate')
+
 
 @pytest.fixture
 def student_1():

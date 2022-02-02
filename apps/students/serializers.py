@@ -2,6 +2,7 @@ from attr import attr
 from rest_framework import serializers
 from .models import Assignment
 
+
 class StudentAssignmentSerializer(serializers.ModelSerializer):
     """
     Student Assignment serializer

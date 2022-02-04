@@ -19,9 +19,10 @@ This is a web application designed in a context of a single classroom.
 Described [here](./Application.md)
 
 ### Your tasks 
-1. Add missing APIs mentioned [here](./Application.md#Missing-APIs) and get the automated tests to pass 
-2. Add a test for grading API
-3. Get the test coverage to 83% or above
+1. Add missing APIs mentioned [here](./Application.md#Missing-APIs)
+2. Get the automated tests to pass
+3. Add a test for grading API
+4. Get the test coverage to 91% or above
 
 ## Submission
 

@@ -194,7 +194,7 @@ response:
 ]
 ```
 
-### PATCH /teacher/assignments/grade/
+### PATCH /teacher/assignments/
 #### Grade an assignment
 ```
 headers:

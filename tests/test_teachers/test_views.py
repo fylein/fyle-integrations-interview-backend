@@ -43,6 +43,7 @@ def test_invalid_grade_teacher_1(api_client, teacher_1):
     response = api_client.patch(
         reverse('teachers-assignments'),
         data=json.dumps({
+            'id': 4,
             'grade': grade
         }),
         HTTP_X_Principal=teacher_1,
@@ -52,7 +53,7 @@ def test_invalid_grade_teacher_1(api_client, teacher_1):
     assert response.status_code == 400
     error = response.json()
 
-    assert 'is not a valid choice.' in error['state'][0]
+    assert 'is not a valid choice.' in error['grade'][0]
 
 
 @pytest.mark.django_db()
@@ -96,7 +97,7 @@ def test_grade_graded_state_teacher_1(api_client, teacher_1):
 
 
 @pytest.mark.django_db()
-def test_change_of_content_teacher_1(api_client, teacher_1):
+def test_change_of_content_teacher_1(api_client, teacher_2):
     response = api_client.patch(
         reverse('teachers-assignments'),
         data=json.dumps({
@@ -104,7 +105,7 @@ def test_change_of_content_teacher_1(api_client, teacher_1):
             'content': 'changed content',
             'grade': 'D'
         }),
-        HTTP_X_Principal=teacher_1,
+        HTTP_X_Principal=teacher_2,
         content_type='application/json'
     )
 

@@ -21,12 +21,12 @@ Described [here](./Application.md)
 ### Your tasks 
 1. Add missing APIs mentioned [here](./Application.md#Missing-APIs)
 2. Get the automated tests to pass
-3. Add a test for grading API
-4. Get the test coverage to 91% or above
+3. Get the test coverage to 90% or above
+4. Feel free to add more test cases, try to increase the coverage as much as you can
 
 ## Submission
 
-Once you are done with your task, please use [this form](https://forms.gle/fZex7LDo6kj1Syg7A) to complete your submission.
+Once you are done with your task, please use [this form](https://forms.gle/Hcs7VX4YiopWwQa4A) to complete your submission.
 
 ## What happens next?
 

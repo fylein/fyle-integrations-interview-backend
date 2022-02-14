@@ -14,10 +14,15 @@ class TeacherAssignmentSerializer(serializers.ModelSerializer):
     def validate(self, attrs):
         if 'grade' in attrs and attrs['grade'] and not attrs['teacher']:
             raise serializers.ValidationError('Student cannot set grade for assignment')
+        
+        if 'content' in attrs and attrs['content']:
+            raise serializers.ValidationError('Teacher cannot change the content of the assignment')
 
         if 'state' in attrs:
             if attrs['state'] == 'DRAFT':
-                raise serializers.ValidationError('Assignment is not submitted by student')
+                raise serializers.ValidationError('SUBMITTED assignments can only be graded')
+            if attrs['state'] == 'GRADED':
+                raise serializers.ValidationError('GRADED assignments cannot be graded again')
 
         if self.partial:
             return attrs

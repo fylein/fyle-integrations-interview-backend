@@ -1,0 +1,91 @@
+(env)
+DELL@OPTIMIZER MINGW64 /f/Github-Projects/fyle-assignment/fyle-integrations-interview-backend (master)
+$ python -m pytest tests/ --cov
+============================= test session starts =============================
+platform win32 -- Python 3.10.2, pytest-6.2.5, py-1.11.0, pluggy-1.0.0
+django: settings: fyle_classroom.settings (from ini)
+rootdir: F:\STUDY\SKY\Video-Lectures\Github-Projects\fyle-assignment\fyle-integrations-interview-backend, configfile: pytest.ini
+plugins: cov-2.12.1, django-4.4.0
+collected 14 items
+
+tests/test_students/test_views.py::test_get_assignments_student_1 PASSED [  7%]
+tests/test_students/test_views.py::test_get_assignments_student_2 PASSED [ 14%]
+tests/test_students/test_views.py::test_post_assignment_student_1 PASSED [ 21%]
+tests/test_students/test_views.py::test_submit_assignment_without_teacher_student_1
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:00 [ WARNING] django.request: Bad Request: /student/assignments/ (log.py:224)
+PASSED                                                                   [ 28%]
+tests/test_students/test_views.py::test_submit_assignment_student_1 PASSED [ 35%]
+tests/test_teachers/test_views.py::test_get_assignments_teacher_1 PASSED [ 42%]
+tests/test_teachers/test_views.py::test_get_assignments_teacher_2 PASSED [ 50%]
+tests/test_teachers/test_views.py::test_invalid_grade_teacher_1
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:12 [ WARNING] django.request: Bad Request: /teacher/assignments/ (log.py:224)
+PASSED                                                                   [ 57%]
+tests/test_teachers/test_views.py::test_grade_draft_state_teacher_1
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:15 [ WARNING] django.request: Bad Request: /teacher/assignments/ (log.py:224)
+PASSED                                                                   [ 64%]
+tests/test_teachers/test_views.py::test_grade_graded_state_teacher_1
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:18 [ WARNING] django.request: Bad Request: /teacher/assignments/ (log.py:224)
+PASSED                                                                   [ 71%]
+tests/test_teachers/test_views.py::test_change_of_content_teacher_1
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:22 [ WARNING] django.request: Bad Request: /teacher/assignments/ (log.py:224)
+PASSED                                                                   [ 78%]
+tests/test_teachers/test_views.py::test_grade_invalid_state_teacher_1
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:25 [ WARNING] django.request: Bad Request: /teacher/assignments/ (log.py:224)
+PASSED                                                                   [ 85%]
+tests/test_teachers/test_views.py::test_grade_other_teacher_teacher_2
+-------------------------------- live log call --------------------------------
+2022-02-14 13:32:28 [ WARNING] django.request: Bad Request: /teacher/assignments/ (log.py:224)
+PASSED                                                                   [ 92%]
+tests/test_teachers/test_views.py::test_grade_assignment_teacher_2 PASSED [100%]
+
+---------- coverage: platform win32, python 3.10.2-final-0 -----------
+Name                                                  Stmts   Miss  Cover
+-------------------------------------------------------------------------
+apps\__init__.py                                          0      0   100%
+apps\internal\__init__.py                                 0      0   100%
+apps\internal\admin.py                                    1      0   100%
+apps\internal\migrations\0001_initial.py                  5      0   100%
+apps\internal\migrations\__init__.py                      0      0   100%
+apps\internal\models.py                                   8      0   100%
+apps\students\__init__.py                                 0      0   100%
+apps\students\admin.py                                    1      0   100%
+apps\students\migrations\0001_initial.py                  6      0   100%
+apps\students\migrations\0002_populate_data.py            5      0   100%
+apps\students\migrations\0003_auto_20220127_1429.py       4      0   100%
+apps\students\migrations\0004_auto_20220127_1441.py       5      0   100%
+apps\students\migrations\__init__.py                      0      0   100%
+apps\students\models.py                                  23      0   100%
+apps\students\serializers.py                             18      2    89%
+apps\students\urls.py                                     3      0   100%
+apps\students\views.py                                   33      3    91%
+apps\teachers\__init__.py                                 0      0   100%
+apps\teachers\admin.py                                    1      0   100%
+apps\teachers\migrations\0001_initial.py                  6      0   100%
+apps\teachers\migrations\__init__.py                      0      0   100%
+apps\teachers\models.py                                   9      0   100%
+apps\teachers\serializers.py                             20      2    90%
+apps\teachers\urls.py                                     3      0   100%
+apps\teachers\views.py                                   32      2    94%
+fyle_classroom\__init__.py                                0      0   100%
+fyle_classroom\principal.py                              18      3    83%
+fyle_classroom\settings.py                               19      0   100%
+fyle_classroom\urls.py                                    3      0   100%
+fyle_classroom\views.py                                   5      1    80%
+manage.py                                                12      2    83%
+tests\__init__.py                                         0      0   100%
+tests\conftest.py                                        37      2    95%
+tests\test_students\__init__.py                           0      0   100%
+tests\test_students\test_views.py                        48      0   100%
+tests\test_teachers\__init__.py                           0      0   100%
+tests\test_teachers\test_views.py                        71      0   100%
+-------------------------------------------------------------------------
+TOTAL                                                   396     17    96%
+
+
+============================= 14 passed in 57.52s =============================

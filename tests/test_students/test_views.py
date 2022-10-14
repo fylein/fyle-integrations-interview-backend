@@ -101,3 +101,81 @@ def test_submit_assignment_student_1(api_client, student_1):
     assert assignment['teacher'] == 1
     assert assignment['grade'] is None
     assert assignment['id'] is not None
+
+
+@pytest.mark.django_db()
+def test_grade_assignments_student_1(api_client, student_1):
+    response = api_client.patch(
+        reverse('students-assignments'),
+        data=json.dumps({
+            'id': 2,
+            'state': 'GRADED',
+            'teacher_id': 1,
+        }),
+        HTTP_X_Principal=student_1,
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+
+    error = response.json()
+    
+    assert error['non_field_errors'] == ['Student cannot set state to GRADED']
+
+@pytest.mark.django_db()
+def test_set_grade_assignments_student_1(api_client, student_1):
+    grade = 'A'
+    response = api_client.patch(
+        reverse('students-assignments'),
+        data=json.dumps({
+            'id': 2,
+            'state': 'DRAFT',
+            'grade': grade,
+            'teacher_id': 1
+        }),
+        HTTP_X_Principal=student_1,
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+
+    error = response.json()
+
+    assert error['non_field_errors'] == ['Student cannot set grade for assignment']
+
+@pytest.mark.django_db()
+def test_fail_post_assignment_student_1(api_client, student_1):
+
+    response = api_client.post(
+        reverse('students-assignments'),
+        data=json.dumps({
+            'id': 2,
+            'state': 'GRADED'
+        }),
+        HTTP_X_Principal=student_1,
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+
+
+@pytest.mark.django_db()
+def test_assignment_does_not_exist_student_1(api_client, student_1):
+
+    response = api_client.patch(
+        reverse('students-assignments'),
+        data=json.dumps({
+            'id': 200,
+            'state': 'GRADED',
+            'teacher_id': 1,
+        }),
+        HTTP_X_Principal=student_1,
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    error = response.json()
+    
+    assert error['error'] == 'Assignment does not exist/permission denied'
+
+   

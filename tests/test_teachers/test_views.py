@@ -116,11 +116,28 @@ def test_change_of_content_teacher_1(api_client, teacher_2):
 
 
 @pytest.mark.django_db()
+def test_grade_invalid_assignment_teacher_1(api_client, teacher_1):
+    response = api_client.patch(
+        reverse('teachers-assignments'),
+        data=json.dumps({
+            'id': 200,
+            'student': 2
+        }),
+        HTTP_X_Principal=teacher_1,
+        content_type='application/json'
+    )
+
+    assert response.status_code == 400
+    error = response.json()
+
+    assert error['error'] == 'Assignment does not exist/permission denied'
+
+@pytest.mark.django_db()
 def test_grade_invalid_state_teacher_1(api_client, teacher_1):
     response = api_client.patch(
         reverse('teachers-assignments'),
         data=json.dumps({
-            'id': 2,
+            'id': 1,
             'student': 2
         }),
         HTTP_X_Principal=teacher_1,
@@ -131,7 +148,6 @@ def test_grade_invalid_state_teacher_1(api_client, teacher_1):
     error = response.json()
 
     assert error['non_field_errors'] == ['Teacher cannot change the student who submitted the assignment']
-
 
 @pytest.mark.django_db()
 def test_grade_other_teacher_teacher_2(api_client, teacher_2):
@@ -147,7 +163,6 @@ def test_grade_other_teacher_teacher_2(api_client, teacher_2):
     )
 
     assert response.status_code == 400
-
     error = response.json()
 
     assert error['non_field_errors'] == ['Teacher cannot grade for other teacher''s assignment']

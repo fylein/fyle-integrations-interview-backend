@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path, include
 
-from .views import BaseView
+from fyle_classroom.views import BaseView
 
 urlpatterns = [
     path('', BaseView.as_view()),

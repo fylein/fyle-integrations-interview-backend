@@ -1,6 +1,5 @@
-from attr import attr
 from rest_framework import serializers
-from .models import Assignment
+from apps.students.models import Assignment
 
 
 class StudentAssignmentSerializer(serializers.ModelSerializer):
@@ -12,8 +11,11 @@ class StudentAssignmentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def validate(self, attrs):
+
         if 'grade' in attrs and attrs['grade']:
             raise serializers.ValidationError('Student cannot set grade for assignment')
+        
+
 
         if 'state' in attrs:
             if attrs['state'] == 'GRADED':

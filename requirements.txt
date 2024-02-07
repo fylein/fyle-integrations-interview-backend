@@ -1,4 +1,4 @@
-django==3.1.14
+django==3.2.24
 djangorestframework==3.11.2
 pytest-django==4.4.0
 pytest==6.2.5
